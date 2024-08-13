@@ -1,5 +1,7 @@
 # Compiles Typst into a PDF and publishes it automatically
 name: Compile Typst
+permissions:
+  contents: write
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
