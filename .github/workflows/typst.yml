@@ -1,0 +1,29 @@
+# Compiles Typst into a PDF and publishes it automatically
+name: Compile Typst
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v3.1.0            
+
+      - name: Compile to PDF
+        run: typst compile main.typ
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: A Practical Guide to Protein Redesign
+          path: main.pdf
